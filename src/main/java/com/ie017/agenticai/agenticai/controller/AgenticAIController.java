@@ -1,6 +1,7 @@
 package com.ie017.agenticai.agenticai.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,8 @@ public class AgenticAIController {
     public AgenticAIController(ChatClient.Builder builder) {
         // Avec le pattern builder on peut ajouter des configurations a notre interface chatClient
         this.chatClient = builder
+                // Je demmande a utiliser c'intercepteur a chaque fois le client envoi un requete
+                .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();
     }
 
