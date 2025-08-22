@@ -27,6 +27,8 @@ public class AgenticAIController {
     @GetMapping("/chat")
     public String askLLm(String query) {
         return chatClient.prompt()// prompt utiliser pour la creation d'un prompt avec ces composants (system message, user message, exemple message)
+                // Ensemble des instructions que vous donnez dans le prompt, et qui le LLM doit respecter pour repondre a la query (question)
+                .system("Use uppercase in every response, dont forget you are a software developer")
                 .user(query) // user message
                 .call() // Pour avoir la reponse
                 .content(); // retourner le resultat de la reponse
