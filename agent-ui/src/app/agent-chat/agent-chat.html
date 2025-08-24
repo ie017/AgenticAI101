@@ -1,0 +1,16 @@
+<div class="p-3">
+  <div class="card-body">
+    <div class="mb-3">
+      <label style="display: block; font-weight:bold " class="form-label m-2">Your question:</label>
+      <input [(ngModel)]="query" style="width: 70%;display: inline" class="form-control m-2">
+      <button *ngIf="!progress" (click)="askAgent()" style="display: inline" class="btn btn-outline-primary m-2">Send</button>
+      <div *ngIf="progress" class="spinner-border text-primary" role="status">
+      <span *ngIf="progress" class="visually-hidden">
+        ...</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <markdown [data]="response"></markdown>
+  </div>
+</div>
