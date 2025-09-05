@@ -7,6 +7,7 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class AgenticAIController {
     // Interface qui vous permet de communiquer avec n'import quel LLM (openai, ollama, ...)
     private ChatClient chatClient;
 
-    public AgenticAIController(ChatClient.Builder builder, ChatMemory chatMemory) {
+    /*public AgenticAIController(ChatClient.Builder builder, ChatMemory chatMemory) {
         // Avec le pattern builder on peut ajouter des configurations a notre interface chatClient
         this.chatClient = builder
                 // Je demmande a utiliser ces'intercepteurs a chaque fois le client envoi une requete
@@ -27,6 +28,11 @@ public class AgenticAIController {
                 //  ChatMemory est l'interface qui nous donne la mémoire par défaut de Spring AI avec un max des messages = 20, ce qui nous permet de régler le comportement de notre agent IA (agent ai are stateless by default)
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                 .build();
+    }*/
+
+    public AgenticAIController(@Qualifier("geminiChatClient") ChatClient chatClient) {
+        // Avec le pattern builder on peut ajouter des configurations a notre interface chatClient
+        this.chatClient = chatClient;
     }
 
     @GetMapping("/ZeroShotPromptingChat")
