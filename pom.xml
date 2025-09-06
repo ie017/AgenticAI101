@@ -49,10 +49,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-vector-store</artifactId>
+            <artifactId>spring-ai-advisors-vector-store</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.ai</groupId>
+            <!-- Cette dependence inclue aussi spring-ai-vector-store dependence -->
             <artifactId>spring-ai-pdf-document-reader</artifactId>
         </dependency>
         <dependency>
